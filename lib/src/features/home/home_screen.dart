@@ -117,7 +117,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                   ),
                 ),
                 Text(
-                  '${controller.weatherDetailsModel.value?.current?.humidity}%',
+                  '${controller.weatherDetailsModel.value?.current?.humidity?.toInt()}%',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15,
@@ -136,7 +136,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                   ),
                 ),
                 Text(
-                  '${(controller.weatherDetailsModel.value?.current?.windSpeed ?? 0.0) * 3.6} km/h',
+                  '${((controller.weatherDetailsModel.value?.current?.windSpeed ?? 0.0) * 3.6).toStringAsFixed(1)} km/h',
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 15,

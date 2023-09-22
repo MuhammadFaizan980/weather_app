@@ -37,8 +37,11 @@ class HomeScreenController extends BaseController {
     } catch (e) {
       print(e);
     }
-    timer = Timer(const Duration(seconds: 2), () {
-      getCityDetailsFromName(cityName: searchedTerm);
+    timer = Timer(const Duration(seconds: 2), () async {
+      await getCityDetailsFromName(cityName: searchedTerm);
+      if (cityDetailsModel.value != null) {
+        getWeatherDetailsFromLatLng();
+      }
     });
   }
 
@@ -62,9 +65,9 @@ class HomeScreenController extends BaseController {
       },
       (r) {
         cityDetailsModel.value = r;
-        getWeatherDetailsFromLatLng();
       },
     );
+    isLoading.value = false;
   }
 
   Future<void> getWeatherDetailsFromLatLng() async {
